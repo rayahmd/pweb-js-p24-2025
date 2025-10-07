@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recipe Collection</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ========== NAVBAR ========== -->
+  <nav class="navbar">
+    <div class="nav-left">
+      <h2>Recipe Collection</h2>
+    </div>
+    <div class="nav-right">
+      <span class="username">Welcome, Emily!</span> <! isi sesuai nama user yg login >
+      <button class="logout-btn">Logout</button>
+    </div>
+  </nav>
+
+  <!-- ========== HEADER SECTION ========== -->
+  <section class="header-section">
+    <h1>Your Recipe Collection</h1>
+    <p>Explore and cook your most-loved dishes.</p>
+  </section>
+
+  <!-- ========== FILTER AREA ========== -->
+  <section class="filter-section">
+    <div class="filter-left">
+        <div class="search-box">
+            <input type="text" placeholder="Search recipes...">
+            <button class="search-btn">🔍</button>
+        </div>
+
+        <select class="filter-select">
+            <option>All Cuisines</option>
+            <option>American</option>
+            <option>Asian</option>
+            <option>Italian</option>
+            <option>Mexican</option>
+            <option>Mediterranean</option>
+            <option>Pakistani</option>
+            <option>Japanese</option>
+            <option>Korean</option>
+            <option>Moroccan</option>
+            <option>Greek</option>
+            <option>Thai</option>
+            <option>Indian</option>
+            <option>Turkish</option>
+            <option>Lebanese</option>
+            <option>Russian</option>
+            <option>Brazilian</option>
+            <option>Smoothie</option>
+        </select>
+    </div>
+        
+    <div class="filter-right">
+        <div class="page-info">Showing 30 of 30 recipes</div> <! nanti dibuat berdasarkan filternya >
+    </div>
+  </section>
+
+  <!-- ========== RECIPE GRID ========== -->
+  <section class="recipe-grid">
+    <!-- Recipe 1 -->
+    <div class="recipe-card" data-id="1">
+      <img src="https://cdn.dummyjson.com/recipe-images/1.webp" alt="Classic Margherita Pizza">
+      <div class="recipe-info">
+        <h3>Classic Margherita Pizza</h3>
+        <div class="recipe-meta">
+          <span>⏱ 35 mins</span>
+          <span>🟢 Easy</span>
+          <span>Italian</span>
+        </div>
+        <p><strong>Ingredients:</strong> Pizza dough, Tomato sauce, Fresh mozzarella cheese +3 more</p>
+        <div class="rating">⭐⭐⭐⭐☆ (4.6)</div>
+        <button class="view-btn">VIEW FULL RECIPE</button>
+      </div>
+    </div>
+
+    <!-- Recipe 2 -->
+    <div class="recipe-card" data-id="2">
+      <img src="https://cdn.dummyjson.com/recipe-images/2.webp" alt="Vegetarian Stir-Fry">
+      <div class="recipe-info">
+        <h3>Vegetarian Stir-Fry</h3>
+        <div class="recipe-meta">
+          <span>⏱ 35 mins</span>
+          <span>🟡 Medium</span>
+          <span>Asian</span>
+        </div>
+        <p><strong>Ingredients:</strong> Tofu, Broccoli florets, Carrots +6 more</p>
+        <div class="rating">⭐⭐⭐⭐⭐ (4.7)</div>
+        <button class="view-btn">VIEW FULL RECIPE</button>
+      </div>
+    </div>
+
+    <!-- Recipe 3 -->
+    <div class="recipe-card" data-id="3">
+      <img src="https://cdn.dummyjson.com/recipe-images/3.webp" alt="Chocolate Chip Cookies">
+      <div class="recipe-info">
+        <h3>Chocolate Chip Cookies</h3>
+        <div class="recipe-meta">
+          <span>⏱ 25 mins</span>
+          <span>🟢 Easy</span>
+          <span>American</span>
+        </div>
+        <p><strong>Ingredients:</strong> All-purpose flour, Butter, Brown sugar +6 more</p>
+        <div class="rating">⭐⭐⭐⭐⭐ (4.9)</div>
+        <button class="view-btn">VIEW FULL RECIPE</button>
+      </div>
+    </div>
+
+    <!-- Recipe 4 -->
+    <div class="recipe-card" data-id="4">
+      <img src="https://cdn.dummyjson.com/recipe-images/4.webp" alt="Chicken Alfredo Pasta">
+      <div class="recipe-info">
+        <h3>Chicken Alfredo Pasta</h3>
+        <div class="recipe-meta">
+          <span>⏱ 35 mins</span>
+          <span>🟡 Medium</span>
+          <span>Italian</span>
+        </div>
+        <p><strong>Ingredients:</strong> Fettuccine pasta, Chicken breast, Heavy cream +5 more</p>
+        <div class="rating">⭐⭐⭐⭐⭐ (4.9)</div>
+        <button class="view-btn">VIEW FULL RECIPE</button>
+      </div>
+    </div>
+
+    <!-- Recipe 5 -->
+    <div class="recipe-card" data-id="5">
+      <img src="https://cdn.dummyjson.com/recipe-images/5.webp" alt="Mango Salsa Chicken">
+      <div class="recipe-info">
+        <h3>Mango Salsa Chicken</h3>
+        <div class="recipe-meta">
+          <span>⏱ 40 mins</span>
+          <span>🟢 Easy</span>
+          <span>Mexican</span>
+        </div>
+        <p><strong>Ingredients:</strong> Chicken thighs, Mango, Red onion +5 more</p>
+        <div class="rating">⭐⭐⭐⭐⭐ (4.9)</div>
+        <button class="view-btn">VIEW FULL RECIPE</button>
+      </div>
+    </div>
+
+    <!-- Recipe 6 -->
+    <div class="recipe-card" data-id="6">
+      <img src="https://cdn.dummyjson.com/recipe-images/6.webp" alt="Quinoa Salad with Avocado">
+      <div class="recipe-info">
+        <h3>Quinoa Salad with Avocado</h3>
+        <div class="recipe-meta">
+          <span>⏱ 35 mins</span>
+          <span>🟢 Easy</span>
+          <span>Mediterranean</span>
+        </div>
+        <p><strong>Ingredients:</strong> Quinoa, Avocado, Cherry tomatoes +5 more</p>
+        <div class="rating">⭐⭐⭐⭐☆ (4.4)</div>
+        <button class="view-btn">VIEW FULL RECIPE</button>
+      </div>
+    </div>
+
+    <!-- Recipe 7 -->
+    <div class="recipe-card" data-id="7">
+      <img src="https://cdn.dummyjson.com/recipe-images/7.webp" alt="Tomato Basil Bruschetta">
+      <div class="recipe-info">
+        <h3>Tomato Basil Bruschetta</h3>
+        <div class="recipe-meta">
+          <span>⏱ 25 mins</span>
+          <span>🟢 Easy</span>
+          <span>Italian</span>
+        </div>
+        <p><strong>Ingredients:</strong> Baguette, Tomatoes, Fresh basil +4 more</p>
+        <div class="rating">⭐⭐⭐⭐⭐ (4.7)</div>
+        <button class="view-btn">VIEW FULL RECIPE</button>
+      </div>
+    </div>
+
+    <!-- Recipe 8 -->
+    <div class="recipe-card" data-id="8">
+      <img src="https://cdn.dummyjson.com/recipe-images/8.webp" alt="Beef and Broccoli Stir-Fry">
+      <div class="recipe-info">
+        <h3>Beef and Broccoli Stir-Fry</h3>
+        <div class="recipe-meta">
+          <span>⏱ 35 mins</span>
+          <span>🟡 Medium</span>
+          <span>Asian</span>
+        </div>
+        <p><strong>Ingredients:</strong> Beef sirloin, Broccoli florets, Soy sauce +6 more</p>
+        <div class="rating">⭐⭐⭐⭐⭐ (4.7)</div>
+        <button class="view-btn">VIEW FULL RECIPE</button>
+      </div>
+    </div>
+
+    <!-- Recipe 9 -->
+    <div class="recipe-card" data-id="9">
+      <img src="https://cdn.dummyjson.com/recipe-images/9.webp" alt="Caprese Salad">
+      <div class="recipe-info">
+        <h3>Caprese Salad</h3>
+        <div class="recipe-meta">
+          <span>⏱ 10 mins</span>
+          <span>🟢 Easy</span>
+          <span>Italian</span>
+        </div>
+        <p><strong>Ingredients:</strong> Tomatoes, Fresh mozzarella cheese, Fresh basil +3 more</p>
+        <div class="rating">⭐⭐⭐⭐☆ (4.6)</div>
+        <button class="view-btn">VIEW FULL RECIPE</button>
+      </div>
+    </div>
+
+    <!-- Recipe 10 -->
+    <div class="recipe-card" data-id="10">
+      <img src="https://cdn.dummyjson.com/recipe-images/10.webp" alt="Shrimp Scampi Pasta">
+      <div class="recipe-info">
+        <h3>Shrimp Scampi Pasta</h3>
+        <div class="recipe-meta">
+          <span>⏱ 35 mins</span>
+          <span>🟡 Medium</span>
+          <span>Italian</span>
+        </div>
+        <p><strong>Ingredients:</strong> Linguine pasta, Shrimp, Garlic +5 more</p>
+        <div class="rating">⭐⭐⭐⭐☆ (4.3)</div>
+        <button class="view-btn">VIEW FULL RECIPE</button>
+      </div>
+    </div>
+
+    <!-- Recipe 11 -->
+    <div class="recipe-card" data-id="11">
+      <img src="https://cdn.dummyjson.com/recipe-images/11.webp" alt="Chicken Biryani">
+      <div class="recipe-info">
+        <h3>Chicken Biryani</h3>
+        <div class="recipe-meta">
+          <span>⏱ 75 mins</span>
+          <span>🟡 Medium</span>
+          <span>Pakistani</span>
+        </div>
+        <p><strong>Ingredients:</strong> Basmati rice, Chicken, Onions +9 more</p>
+        <div class="rating">⭐⭐⭐⭐⭐ (5.0)</div>
+        <button class="view-btn">VIEW FULL RECIPE</button>
+      </div>
+    </div>
+
+    <!-- Recipe 12 -->
+    <div class="recipe-card" data-id="12">
+      <img src="https://cdn.dummyjson.com/recipe-images/12.webp" alt="Chicken Karahi">
+      <div class="recipe-info">
+        <h3>Chicken Karahi</h3>
+        <div class="recipe-meta">
+          <span>⏱ 50 mins</span>
+          <span>🟢 Easy</span>
+          <span>Pakistani</span>
+        </div>
+        <p><strong>Ingredients:</strong> Chicken, Tomatoes, Green chilies +7 more</p>
+        <div class="rating">⭐⭐⭐⭐⭐ (4.8)</div>
+        <button class="view-btn">VIEW FULL RECIPE</button>
+      </div>
+    </div>
+
+    <!-- Recipe 13 -->
+    <div class="recipe-card" data-id="13">
+      <img src="https://cdn.dummyjson.com/recipe-images/13.webp" alt="Aloo Keema">
+      <div class="recipe-info">
+        <h3>Aloo Keema</h3>
+        <div class="recipe-meta">
+          <span>⏱ 60 mins</span>
+          <span>🟡 Medium</span>
+          <span>Pakistani</span>
+        </div>
+        <p><strong>Ingredients:</strong> Ground beef, Potatoes, Onions +7 more</p>
+        <div class="rating">⭐⭐⭐⭐☆ (4.6)</div>
+        <button class="view-btn">VIEW FULL RECIPE</button>
+      </div>
+    </div>
+
+    <!-- Recipe 14 -->
+    <div class="recipe-card" data-id="14">
+      <img src="https://cdn.dummyjson.com/recipe-images/14.webp" alt="Chapli Kebabs">
+      <div class="recipe-info">
+        <h3>Chapli Kebabs</h3>
+        <div class="recipe-meta">
+          <span>⏱ 50 mins</span>
+          <span>🟡 Medium</span>
+          <span>Pakistani</span>
+        </div>
+        <p><strong>Ingredients:</strong> Ground beef, Onions, Tomatoes +9 more</p>
+        <div class="rating">⭐⭐⭐⭐⭐ (4.7)</div>
+        <button class="view-btn">VIEW FULL RECIPE</button>
+      </div>
+    </div>
+
+    <!-- Recipe 15 -->
+    <div class="recipe-card" data-id="15">
+      <img src="https://cdn.dummyjson.com/recipe-images/15.webp" alt="Saag with Makki di Roti">
+      <div class="recipe-info">
+        <h3>Saag (Spinach) with Makki di Roti</h3>
+        <div class="recipe-meta">
+          <span>⏱ 70 mins</span>
+          <span>🟡 Medium</span>
+          <span>Pakistani</span>
+        </div>
+        <p><strong>Ingredients:</strong> Mustard greens, Spinach, Cornmeal +5 more</p>
+        <div class="rating">⭐⭐⭐⭐☆ (4.3)</div>
+        <button class="view-btn">VIEW FULL RECIPE</button>
+      </div>
+    </div>
+
+    <!-- Recipe 16 -->
+    <div class="recipe-card" data-id="16">
+      <img src="https://cdn.dummyjson.com/recipe-images/16.webp" alt="Japanese Ramen Soup">
+      <div class="recipe-info">
+        <h3>Japanese Ramen Soup</h3>
+        <div class="recipe-meta">
+          <span>⏱ 45 mins</span>
+          <span>🟡 Medium</span>
+          <span>Japanese</span>
+        </div>
+        <p><strong>Ingredients:</strong> Ramen noodles, Chicken broth, Soy sauce +8 more</p>
+        <div class="rating">⭐⭐⭐⭐⭐ (4.9)</div>
+        <button class="view-btn">VIEW FULL RECIPE</button>
+      </div>
+    </div>
+
+    <!-- Recipe 17 -->
+    <div class="recipe-card" data-id="17">
+      <img src="https://cdn.dummyjson.com/recipe-images/17.webp" alt="Moroccan Chickpea Tagine">
+      <div class="recipe-info">
+        <h3>Moroccan Chickpea Tagine</h3>
+        <div class="recipe-meta">
+          <span>⏱ 45 mins</span>
+          <span>🟢 Easy</span>
+          <span>Moroccan</span>
+        </div>
+        <p><strong>Ingredients:</strong> Chickpeas, Tomatoes, Carrots +9 more</p>
+        <div class="rating">⭐⭐⭐⭐☆ (4.5)</div>
+        <button class="view-btn">VIEW FULL RECIPE</button>
+      </div>
+    </div>
+
+    <!-- Recipe 18 -->
+    <div class="recipe-card" data-id="18">
+      <img src="https://cdn.dummyjson.com/recipe-images/18.webp" alt="Korean Bibimbap">
+      <div class="recipe-info">
+        <h3>Korean Bibimbap</h3>
+        <div class="recipe-meta">
+          <span>⏱ 50 mins</span>
+          <span>🟡  Medium</span>
+          <span>Korean</span>
+        </div>
+        <p><strong>Ingredients:</strong> Cooked white rice, Beef bulgogi, Carrots +7 more</p>
+        <div class="rating">⭐⭐⭐⭐⭐ (4.9)</div>
+        <button class="view-btn">VIEW FULL RECIPE</button>
+      </div>
+    </div>
+
+    <!-- Recipe 19 -->
+    <div class="recipe-card" data-id="19">
+      <img src="https://cdn.dummyjson.com/recipe-images/19.webp" alt="Greek Moussaka">
+      <div class="recipe-info">
+        <h3>Greek Moussaka</h3>
+        <div class="recipe-meta">
+          <span>⏱ 90 mins</span>
+          <span>🟡 Medium</span>
+          <span>Greek</span>
+        </div>
+        <p><strong>Ingredients:</strong> Eggplants, Ground lamb, Onions +11 more</p>
+        <div class="rating">⭐⭐⭐⭐☆ (4.3)</div>
+        <button class="view-btn">VIEW FULL RECIPE</button>
+      </div>
+    </div>
+
+    <!-- Recipe 20 -->
+    <div class="recipe-card" data-id="20">
+      <img src="https://cdn.dummyjson.com/recipe-images/20.webp" alt="Butter Chicken (Murgh Makhani)">
+      <div class="recipe-info">
+        <h3>Butter Chicken (Murgh Makhani)</h3>
+        <div class="recipe-meta">
+          <span>⏱ 55 mins</span>
+          <span>🟡 Medium</span>
+          <span>Pakistani</span>
+        </div>
+        <p><strong>Ingredients:</strong> Chicken thighs, Yogurt, Ginger-garlic paste +8 more</p>
+        <div class="rating">⭐⭐⭐⭐☆ (4.5)</div>
+        <button class="view-btn">VIEW FULL RECIPE</button>
+      </div>
+    </div>
+
+    <!-- Recipe 21 -->
+    <div class="recipe-card" data-id="21">
+      <img src="https://cdn.dummyjson.com/recipe-images/21.webp" alt="Thai Green Curry">
+      <div class="recipe-info">
+        <h3>Thai Green Curry</h3>
+        <div class="recipe-meta">
+          <span>⏱ 50 mins</span>
+          <span>🟡 Medium</span>
+          <span>Thai</span>
+        </div>
+        <p><strong>Ingredients:</strong> Chicken thighs, Green curry paste, Coconut milk +6 more</p>
+        <div class="rating">⭐⭐⭐⭐☆ (4.2)</div>
+        <button class="view-btn">VIEW FULL RECIPE</button>
+      </div>
+    </div>
+
+    <!-- Recipe 22 -->
+    <div class="recipe-card" data-id="22">
+      <img src="https://cdn.dummyjson.com/recipe-images/22.webp" alt="Mango Lassi">
+      <div class="recipe-info">
+        <h3>Mango Lassi</h3>
+        <div class="recipe-meta">
+          <span>⏱ 10 mins</span>
+          <span>🟢 Easy</span>
+          <span>Indian</span>
+        </div>
+        <p><strong>Ingredients:</strong> Ripe mango, Yogurt, Milk +3 more</p>
+        <div class="rating">⭐⭐⭐⭐⭐ (4.7)</div>
+        <button class="view-btn">VIEW FULL RECIPE</button>
+      </div>
+    </div>
+
+    <!-- Recipe 23 -->
+    <div class="recipe-card" data-id="23">
+      <img src="https://cdn.dummyjson.com/recipe-images/23.webp" alt="Italian Tiramisu">
+      <div class="recipe-info">
+        <h3>Italian Tiramisu</h3>
+        <div class="recipe-meta">
+          <span>⏱ 30 mins</span>
+          <span>🟡 Medium</span>
+          <span>Italian</span>
+        </div>
+        <p><strong>Ingredients:</strong> Espresso, Ladyfinger cookies, Mascarpone cheese +3 more</p>
+        <div class="rating">⭐⭐⭐⭐☆ (4.6)</div>
+        <button class="view-btn">VIEW FULL RECIPE</button>
+      </div>
+    </div>
+
+    <!-- Recipe 24 -->
+    <div class="recipe-card" data-id="24">
+      <img src="https://cdn.dummyjson.com/recipe-images/24.webp" alt="Turkish Kebabs">
+      <div class="recipe-info">
+        <h3>Turkish Kebabs</h3>
+        <div class="recipe-meta">
+          <span>⏱ 40 mins</span>
+          <span>🟢 Easy</span>
+          <span>Turkish</span>
+        </div>
+        <p><strong>Ingredients:</strong> Ground lamb, Onions, Garlic +7 more</p>
+        <div class="rating">⭐⭐⭐⭐☆ (4.6)</div>
+        <button class="view-btn">VIEW FULL RECIPE</button>
+      </div>
+    </div>
+
+    <!-- Recipe 25 -->
+    <div class="recipe-card" data-id="25">
+      <img src="https://cdn.dummyjson.com/recipe-images/25.webp" alt="Blueberry Banana Smoothie">
+      <div class="recipe-info">
+        <h3>Blueberry Banana Smoothie</h3>
+        <div class="recipe-meta">
+          <span>⏱ 10 mins</span>
+          <span>🟢 Easy</span>
+          <span>Smoothie</span>
+        </div>
+        <p><strong>Ingredients:</strong> Blueberries, Banana, Greek yogurt +3 more</p>
+        <div class="rating">⭐⭐⭐⭐⭐ (4.8)</div>
+        <button class="view-btn">VIEW FULL RECIPE</button>
+      </div>
+    </div>
+
+    <!-- Recipe 26 -->
+    <div class="recipe-card" data-id="26">
+      <img src="https://cdn.dummyjson.com/recipe-images/26.webp" alt="Mexican Street Corn (Elote)">
+      <div class="recipe-info">
+        <h3>Mexican Street Corn (Elote)</h3>
+        <div class="recipe-meta">
+          <span>⏱ 30 mins</span>
+          <span>🟢 Easy</span>
+          <span>Mexican</span>
+        </div>
+        <p><strong>Ingredients:</strong> Corn on the cob, Mayonnaise, Cotija cheese +2 more</p>
+        <div class="rating">⭐⭐⭐⭐☆ (4.6)</div>
+        <button class="view-btn">VIEW FULL RECIPE</button>
+      </div>
+    </div>
+
+    <!-- Recipe 27 -->
+    <div class="recipe-card" data-id="27">
+      <img src="https://cdn.dummyjson.com/recipe-images/27.webp" alt="Russian Borscht">
+      <div class="recipe-info">
+        <h3>Russian Borscht</h3>
+        <div class="recipe-meta">
+          <span>⏱ 70 mins</span>
+          <span>🟡 Medium</span>
+          <span>Russian</span>
+        </div>
+        <p><strong>Ingredients:</strong> Beets, Cabbage, Potatoes +7 more</p>
+        <div class="rating">⭐⭐⭐⭐☆ (4.3)</div>
+        <button class="view-btn">VIEW FULL RECIPE</button>
+      </div>
+    </div>
+
+    <!-- Recipe 28 -->
+    <div class="recipe-card" data-id="28">
+      <img src="https://cdn.dummyjson.com/recipe-images/28.webp" alt="South Indian Masala Dosa">
+      <div class="recipe-info">
+        <h3>South Indian Masala Dosa</h3>
+        <div class="recipe-meta">
+          <span>⏱ 60 mins</span>
+          <span>🟡 Medium</span>
+          <span>Indian</span>
+        </div>
+        <p><strong>Ingredients:</strong> Dosa batter, Potatoes, Onions +7 more</p>
+        <div class="rating">⭐⭐⭐⭐☆ (4.4)</div>
+        <button class="view-btn">VIEW FULL RECIPE</button>
+      </div>
+    </div>
+
+    <!-- Recipe 29 -->
+    <div class="recipe-card" data-id="29">
+      <img src="https://cdn.dummyjson.com/recipe-images/29.webp" alt="Lebanese Falafel Wrap">
+      <div class="recipe-info">
+        <h3>Lebanese Falafel Wrap</h3>
+        <div class="recipe-meta">
+          <span>⏱ 25 mins</span>
+          <span>🟢 Easy</span>
+          <span>Lebanese</span>
+        </div>
+        <p><strong>Ingredients:</strong> Falafel balls, Wraps, Tomatoes +5 more</p>
+        <div class="rating">⭐⭐⭐⭐⭐ (4.7)</div>
+        <button class="view-btn">VIEW FULL RECIPE</button>
+      </div>
+    </div>
+
+    <!-- Recipe 30 -->
+    <div class="recipe-card" data-id="30">
+      <img src="https://cdn.dummyjson.com/recipe-images/30.webp" alt="Brazilian Caipirinha">
+      <div class="recipe-info">
+        <h3>Brazilian Caipirinha</h3>
+        <div class="recipe-meta">
+          <span>⏱ 5 mins</span>
+          <span>🟢 Easy</span>
+          <span>Brazilian</span>
+        </div>
+        <p><strong>Ingredients:</strong> Cachaça, Lime, Sugar +1 more</p>
+        <div class="rating">⭐⭐⭐⭐☆ (4.4)</div>
+        <button class="view-btn">VIEW FULL RECIPE</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SHOW MORE BUTTON ========== -->
+  <div class="show-more-section">
+    <button class="show-more-btn">Show More Recipes</button>
+  </div>
+
+  <!-- ========== MODAL FOR VIEW FULL RECIPE ========== -->
+  <div id="recipe-modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2 id="modal-title">Recipe Title</h2>
+      <div class="modal-header">
+        <img id="modal-image" src="" alt="Recipe Image">
+        <div class="info-boxes">
+          <div class="info-box">
+            <div class="label">PREP TIME</div>
+            <div class="value" id="modal-prep-time">-- mins</div>
+          </div>
+          <div class="info-box">
+            <div class="label">COOK TIME</div>
+            <div class="value" id="modal-cook-time">-- mins</div>
+          </div>
+          <div class="info-box">
+            <div class="label">SERVINGS</div>
+            <div class="value" id="modal-servings">--</div>
+          </div>
+          <div class="info-box">
+            <div class="label">DIFFICULTY</div>
+            <div class="value" id="modal-difficulty">--</div>
+          </div>
+          <div class="info-box">
+            <div class="label">CUISINE</div>
+            <div class="value" id="modal-cuisine">--</div>
+          </div>
+          <div class="info-box">
+            <div class="label">CALORIES</div>
+            <div class="value" id="modal-calories">-- cal/serving</div>
+          </div>
+        </div>
+      </div>
+      <div class="rating-section">
+        <div id="modal-rating-stars" class="rating-stars">⭐⭐⭐⭐⭐</div>
+        <span id="modal-rating-text">(--)</span>
+        <span id="modal-review-count">-- reviews</span>
+      </div>
+      <div class="tags-section">
+        <span id="modal-tags"></span>
+      </div>
+      <div class="modal-body">
+        <h3>Ingredients</h3>
+        <ul id="modal-ingredients">
+          <!-- Will be filled by JS -->
+        </ul>
+        <h3>Instructions</h3>
+        <ol id="modal-instructions">
+          <!-- Will be filled by JS -->
+        </ol>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
