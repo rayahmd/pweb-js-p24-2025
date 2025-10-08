@@ -12,7 +12,7 @@
   --text-secondary: #555555;
   --border-color: #e8e8e8;
   --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
-  --accent: #000000;
+  --accent: #ed1010;
   --accent-hover: #333333;
   --rating-color: #f59e0b;
   --success: #10b981;
@@ -29,24 +29,28 @@ body {
   padding-bottom: 60px;
 }
 
-/* ========== NAVBAR ========== */
 .navbar {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  padding: 20px 5%;
-  background-color: var(--bg-secondary);
-  border-bottom: 1px solid var(--border-color);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  box-shadow: 0 1px 6px rgba(0,0,0,0.03);
+  background: rgba(255, 255, 255, 0.08);
+  color: black;
+  padding: 14px 20px;      
+  left: 0;
+  right: 0;
+  width: 70%;
+  margin: 20px auto;
+  z-index: 1000;
+  border-radius: 30px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 6px 26px rgba(0, 0, 0, 0.12);
 }
 
 .nav-left h2 {
   font-weight: 700;
   font-size: 20px;
-  letter-spacing: -0.2px;
+  margin-left: 10px;
 }
 
 .nav-right {
@@ -65,7 +69,7 @@ body {
   color: var(--text-primary);
   border: 1px solid var(--border-color);
   padding: 8px 16px;
-  border-radius: 8px;
+  border-radius: 30px;
   font-size: 14px;
   cursor: pointer;
   transition: all 0.25s ease;
