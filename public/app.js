@@ -1,5 +1,31 @@
 let allRecipes = [];
 
+// Check if user is logged in
+function checkAuth() {
+  const firstName = localStorage.getItem('firstName');
+  if (!firstName) {
+    // Redirect to login if not logged in
+    window.location.href = 'login.html';
+    return false;
+  }
+  
+  // Display username in navbar
+  const usernameDisplay = document.getElementById('username-display');
+  if (usernameDisplay) {
+    usernameDisplay.textContent = `Welcome, ${firstName}!`;
+  }
+  
+  return true;
+}
+
+// Handle logout
+function handleLogout() {
+  localStorage.removeItem('firstName');
+  localStorage.removeItem('userId');
+  localStorage.removeItem('userEmail');
+  window.location.href = 'login.html';
+}
+
 async function fetchRecipes() {
   try {
     const res = await fetch("/api/recipes");
@@ -79,7 +105,18 @@ async function openModal(id) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  // Check authentication first
+  if (!checkAuth()) {
+    return;
+  }
+  
   fetchRecipes();
+
+  // Add logout button event listener
+  const logoutBtn = document.querySelector('.logout-btn');
+  if (logoutBtn) {
+    logoutBtn.addEventListener('click', handleLogout);
+  }
 
   document.querySelector(".close").addEventListener("click", () => {
     document.getElementById("recipe-modal").style.display = "none";

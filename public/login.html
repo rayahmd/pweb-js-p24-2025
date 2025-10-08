@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Recipe</title>
+  <link rel="stylesheet" href="login.css">
+</head>
+<body>
+  <div class="container">
+    <div class="mango mango-top-right"></div>
+    <div class="mango mango-bottom-left"></div>
+    
+    <div class="login-card">
+      <div class="logo">
+        <span class="logo-icon">🥭</span>
+        <span class="logo-text">Recipe</span>
+      </div>
+      
+      <h1 class="title">Explore Your Recipe In Here</h1>
+      
+      <form id="login-form" class="login-form">
+        <div class="form-group">
+          <label for="username" class="form-label">Your email</label>
+          <div class="input-wrapper">
+            <span class="input-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+            </span>
+            <input 
+              type="text" 
+              id="username" 
+              name="username" 
+              class="form-input" 
+              placeholder="e.g. emilys"
+              required
+            >
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="password" class="form-label">Your password</label>
+          <div class="input-wrapper">
+            <span class="input-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+              </svg>
+            </span>
+            <input 
+              type="password" 
+              id="password" 
+              name="password" 
+              class="form-input" 
+              placeholder="e.g. emilyspass"
+              required
+            >
+          </div>
+        </div>
+        
+        <div id="error-message" class="error-message"></div>
+        <div id="success-message" class="success-message"></div>
+        
+        <button type="submit" id="signin-btn" class="signin-btn">
+          <span class="btn-text">Sign in</span>
+          <span class="btn-loader"></span>
+        </button>
+        
+        <div class="form-footer">
+          <a href="#" class="link">Don't have an account?</a>
+          <a href="#" class="link">Forgot password?</a>
+        </div>
+      </form>
+    </div>
+    
+    <div class="tools-footer">
+      <div class="tool-item">
+        <span class="tool-icon red"></span>
+        <span class="tool-name">Resep Nusantara</span>
+      </div>
+      <div class="tool-item">
+        <span class="tool-icon yellow"></span>
+        <span class="tool-name">Resep Harian</span>
+      </div>
+      <div class="tool-item">
+        <span class="tool-icon purple"></span>
+        <span class="tool-name">Resep Dessert</span>
+      </div>
+      <div class="tool-item">
+        <span class="tool-icon blue"></span>
+        <span class="tool-name">Resep Seafood</span>
+      </div>
+      <div class="tool-item">
+        <span class="tool-icon pink"></span>
+        <span class="tool-name">Resep Tradisional</span>
+      </div>
+    </div>
+  </div>
+  
+  <script src="login.js"></script>
+</body>
+</html>
