@@ -1,87 +1,159 @@
-let allRecipes = [];
+const recipeGrid = document.querySelector(".recipe-grid");
+const pageInfo = document.querySelector(".page-info");
+const showMoreBtn = document.querySelector(".show-more-btn");
+const searchInput = document.querySelector(".search-input");
+const searchBtn = document.querySelector(".search-btn");
+const filterSelect = document.querySelector(".filter-select");
 
+const modal = document.getElementById("recipe-modal");
+const closeBtn = document.querySelector(".close");
+
+// elemen modal
+const modalTitle = document.getElementById("modal-title");
+const modalImage = document.getElementById("modal-image");
+const modalPrepTime = document.getElementById("modal-prep-time");
+const modalCookTime = document.getElementById("modal-cook-time");
+const modalServings = document.getElementById("modal-servings");
+const modalDifficulty = document.getElementById("modal-difficulty");
+const modalCuisine = document.getElementById("modal-cuisine");
+const modalCalories = document.getElementById("modal-calories");
+const modalRatingStars = document.getElementById("modal-rating-stars");
+const modalRatingText = document.getElementById("modal-rating-text");
+const modalReviewCount = document.getElementById("modal-review-count");
+const modalTags = document.getElementById("modal-tags");
+const modalIngredients = document.getElementById("modal-ingredients");
+const modalInstructions = document.getElementById("modal-instructions");
+
+// state
+let recipes = [];
+let limit = 12;
+let skip = 0;
+let total = 0;
+let currentQuery = "";
+let currentCuisine = "all";
+
+// ambil list recipes
 async function fetchRecipes() {
-  try {
-    const res = await fetch("/api/recipes");
-    const data = await res.json();
-    allRecipes = data.recipes;
-    renderRecipes(allRecipes);
-  } catch (err) {
-    console.error("Error fetching recipes", err);
+  let url = `https://dummyjson.com/recipes?limit=${limit}&skip=${skip}`;
+  if (currentQuery) {
+    url = `https://dummyjson.com/recipes/search?q=${currentQuery}&limit=${limit}&skip=${skip}`;
   }
+  const res = await fetch(url);
+  const data = await res.json();
+  recipes = [...recipes, ...data.recipes];
+  total = data.total;
+  renderRecipes();
 }
 
-function renderRecipes(recipes) {
-  const modal = document.getElementById("recipe-modal");
-  const closeBtn = document.querySelector(".close");
+// render recipe card
+function renderRecipes() {
+  recipeGrid.innerHTML = "";
 
-  const grid = document.querySelector(".recipe-grid");
-  grid.innerHTML = "";
+  const filtered = currentCuisine === "all"
+    ? recipes
+    : recipes.filter(r => r.cuisine.toLowerCase() === currentCuisine.toLowerCase());
 
-  recipes.forEach(recipe => {
+  filtered.forEach(recipe => {
     const card = document.createElement("div");
-    card.className = "recipe-card";
+    card.classList.add("recipe-card");
     card.innerHTML = `
       <img src="${recipe.image}" alt="${recipe.name}">
       <div class="recipe-info">
         <h3>${recipe.name}</h3>
         <div class="recipe-meta">
-          <span>⏱ ${recipe.prepTimeMinutes ?? 0} mins</span>
-          <span>${recipe.difficulty ?? "N/A"}</span>
-          <span>${recipe.cuisine ?? "Unknown"}</span>
+          <span>⏱ ${recipe.prepTimeMinutes + recipe.cookTimeMinutes} mins</span>
+          <span>${recipe.difficulty}</span>
+          <span>${recipe.cuisine}</span>
         </div>
-        <p><strong>Ingredients:</strong> ${recipe.ingredients?.slice(0, 4).join(", ")}...</p>
-        <div class="rating">⭐ ${recipe.rating ?? "N/A"}</div>
+        <p><strong>Ingredients:</strong> ${recipe.ingredients.slice(0,3).join(", ")} +${Math.max(0, recipe.ingredients.length-3)} more</p>
+        <div class="rating">⭐⭐⭐⭐⭐ (${recipe.rating})</div>
         <button class="view-btn" data-id="${recipe.id}">VIEW FULL RECIPE</button>
       </div>
     `;
-    grid.appendChild(card);
+    recipeGrid.appendChild(card);
   });
 
-  document.querySelector(".page-info").textContent =
-    `Showing ${recipes.length} recipes`;
+  pageInfo.textContent = `Showing ${filtered.length} of ${total} recipes`;
 
+  // tambahin event listener ke tombol view
   document.querySelectorAll(".view-btn").forEach(btn => {
-    btn.addEventListener("click", () => openModal(btn.dataset.id));
+    btn.addEventListener("click", () => {
+      const id = btn.getAttribute("data-id");
+      openRecipe(id);
+    });
   });
 }
 
-async function openModal(id) {
-  const res = await fetch(`/api/recipes/${id}`);
+// ambil detail recipe
+async function openRecipe(id) {
+  const res = await fetch(`https://dummyjson.com/recipes/${id}`);
   const recipe = await res.json();
 
-  document.getElementById("modal-title").textContent = recipe.name;
-  document.getElementById("modal-image").src = recipe.image;
-  document.getElementById("modal-prep-time").textContent = `${recipe.prepTimeMinutes} mins`;
-  document.getElementById("modal-cook-time").textContent = `${recipe.cookTimeMinutes} mins`;
-  document.getElementById("modal-servings").textContent = recipe.servings;
-  document.getElementById("modal-difficulty").textContent = recipe.difficulty;
-  document.getElementById("modal-cuisine").textContent = recipe.cuisine;
-  document.getElementById("modal-calories").textContent = `${recipe.caloriesPerServing} cal/serving`;
+  // isi modal
+  modalTitle.textContent = recipe.name;
+  modalImage.src = recipe.image;
+  modalPrepTime.textContent = `${recipe.prepTimeMinutes} mins`;
+  modalCookTime.textContent = `${recipe.cookTimeMinutes} mins`;
+  modalServings.textContent = recipe.servings;
+  modalDifficulty.textContent = recipe.difficulty;
+  modalCuisine.textContent = recipe.cuisine;
+  modalCalories.textContent = `${recipe.caloriesPerServing} cal/serving`;
+  modalRatingStars.textContent = "⭐⭐⭐⭐⭐".slice(0, Math.round(recipe.rating));
+  modalRatingText.textContent = `(${recipe.rating})`;
+  modalReviewCount.textContent = `${recipe.reviewCount || "--"} reviews`;
+  modalTags.textContent = recipe.tags ? recipe.tags.join(", ") : "";
 
-  const ul = document.getElementById("modal-ingredients");
-  ul.innerHTML = "";
+  // ingredients
+  modalIngredients.innerHTML = "";
   recipe.ingredients.forEach(ing => {
     const li = document.createElement("li");
     li.textContent = ing;
-    ul.appendChild(li);
+    modalIngredients.appendChild(li);
   });
 
-  const ol = document.getElementById("modal-instructions");
-  ol.innerHTML = "";
+  // instructions
+  modalInstructions.innerHTML = "";
   recipe.instructions.forEach(step => {
     const li = document.createElement("li");
     li.textContent = step;
-    ol.appendChild(li);
+    modalInstructions.appendChild(li);
   });
 
-  document.getElementById("recipe-modal").style.display = "block";
+  // buka modal
+  modal.classList.add("show");
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  fetchRecipes();
-
-  document.querySelector(".close").addEventListener("click", () => {
-    document.getElementById("recipe-modal").style.display = "none";
-  });
+// close modal
+closeBtn.addEventListener("click", () => {
+  modal.classList.remove("show");
 });
+
+// klik luar modal -> close
+modal.addEventListener("click", (e) => {
+  if (e.target === modal) {
+    modal.classList.remove("show");
+  }
+});
+
+// search
+searchBtn.addEventListener("click", () => {
+  currentQuery = searchInput.value;
+  recipes = [];
+  skip = 0;
+  fetchRecipes();
+});
+
+// filter cuisine
+filterSelect.addEventListener("change", () => {
+  currentCuisine = filterSelect.value;
+  renderRecipes();
+});
+
+// load more
+showMoreBtn.addEventListener("click", () => {
+  skip += limit;
+  fetchRecipes();
+});
+
+// initial load
+fetchRecipes();

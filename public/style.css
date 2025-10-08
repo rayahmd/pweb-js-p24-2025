@@ -12,7 +12,7 @@
   --text-secondary: #555555;
   --border-color: #e8e8e8;
   --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
-  --accent: #ed1010;
+  --accent: #000000;
   --accent-hover: #333333;
   --rating-color: #f59e0b;
   --success: #10b981;
@@ -292,7 +292,7 @@ body {
 
 /* ========== MODAL ========== */
 .modal {
-  display: none; 
+  display: none; /* awalnya sembunyi */
   position: fixed;
   top: 0;
   left: 0;
@@ -307,7 +307,7 @@ body {
 }
 
 .modal.show {
-  display: flex;
+  display: flex; /* ditampilkan dengan JS */
   animation: fadeIn 0.3s ease;
 }
 
@@ -350,6 +350,7 @@ body {
   from {transform: translateY(20px); opacity: 0;}
   to {transform: translateY(0); opacity: 1;}
 }
+
 
 .modal-content h2 {
   font-size: 26px;
