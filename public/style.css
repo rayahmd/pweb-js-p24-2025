@@ -301,7 +301,24 @@ body.dark-mode .view-btn {
   background: var(--text-primary);
   color: var(--bg-primary);
 }
+
 body.dark-mode .view-btn:hover {
+  background: var(--text-secondary);
+  color: var(--bg-primary);
+}
+
+body.dark-mode .logout-btn:hover {
+  background: var(--text-primary);
+  color: var(--bg-primary);
+  border-color: var(--text-primary);
+}
+
+body.dark-mode .show-more-btn {
+  background: var(--text-primary);
+  color: var(--bg-primary);
+}
+
+body.dark-mode .show-more-btn:hover {
   background: var(--text-secondary);
   color: var(--bg-primary);
 }
