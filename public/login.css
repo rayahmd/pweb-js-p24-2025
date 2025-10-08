@@ -1,0 +1,389 @@
+/* ========== RESET & GLOBAL ========== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #f5f1e8 0%, #ebe4d8 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ========== CONTAINER ========== */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* ========== MANGO DECORATIONS ========== */
+.mango {
+  position: absolute;
+  border-radius: 50% 40% 60% 50%;
+  background: linear-gradient(135deg, #ff6b6b 0%, #ff8e53 50%, #feca57 100%);
+  opacity: 0.7;
+  z-index: 0;
+}
+
+.mango-top-right {
+  width: 300px;
+  height: 300px;
+  top: -50px;
+  right: 100px;
+  animation: float 6s ease-in-out infinite;
+}
+
+.mango-bottom-left {
+  width: 150px;
+  height: 150px;
+  bottom: 100px;
+  left: 150px;
+  animation: float 8s ease-in-out infinite reverse;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(5deg);
+  }
+}
+
+/* ========== LOGIN CARD ========== */
+.login-card {
+  background: white;
+  border-radius: 12px;
+  padding: 48px 56px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  max-width: 480px;
+  position: relative;
+  z-index: 10;
+}
+
+/* ========== LOGO ========== */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 32px;
+}
+
+.logo-icon {
+  font-size: 28px;
+  line-height: 1;
+}
+
+.logo-text {
+  font-size: 24px;
+  font-weight: 700;
+  color: #2c3e50;
+  letter-spacing: -0.5px;
+}
+
+/* ========== TITLE ========== */
+.title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 32px;
+  text-align: center;
+  letter-spacing: -0.5px;
+}
+
+/* ========== FORM ========== */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #5a6c7d;
+  margin-bottom: 4px;
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon {
+  position: absolute;
+  left: 16px;
+  color: #95a5a6;
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+}
+
+.form-input {
+  width: 100%;
+  padding: 14px 16px 14px 44px;
+  border: 2px solid #e8ecef;
+  border-radius: 8px;
+  font-size: 15px;
+  color: #2c3e50;
+  transition: all 0.3s ease;
+  background: white;
+}
+
+.form-input::placeholder {
+  color: #bdc3c7;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+}
+
+/* ========== MESSAGES ========== */
+.error-message,
+.success-message {
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  display: none;
+  animation: slideIn 0.3s ease;
+}
+
+.error-message {
+  background: #fee;
+  color: #c33;
+  border: 1px solid #fcc;
+}
+
+.success-message {
+  background: #efe;
+  color: #3c3;
+  border: 1px solid #cfc;
+}
+
+.error-message.show,
+.success-message.show {
+  display: block;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ========== SIGN IN BUTTON ========== */
+.signin-btn {
+  background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  padding: 16px 32px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 8px;
+  position: relative;
+  overflow: hidden;
+}
+
+.signin-btn:hover {
+  background: linear-gradient(135deg, #229954 0%, #1e8449 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(39, 174, 96, 0.3);
+}
+
+.signin-btn:active {
+  transform: translateY(0);
+}
+
+.signin-btn:disabled {
+  background: #95a5a6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.signin-btn .btn-text {
+  display: inline-block;
+}
+
+.signin-btn .btn-loader {
+  display: none;
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+.signin-btn.loading .btn-text {
+  display: none;
+}
+
+.signin-btn.loading .btn-loader {
+  display: inline-block;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ========== FORM FOOTER ========== */
+.form-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 16px;
+  gap: 16px;
+}
+
+.link {
+  color: #3498db;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.link:hover {
+  color: #2980b9;
+  text-decoration: underline;
+}
+
+/* ========== TOOLS FOOTER ========== */
+.tools-footer {
+  display: flex;
+  gap: 32px;
+  margin-top: 48px;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 24px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.tool-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.tool-icon {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.tool-icon.red {
+  background: linear-gradient(135deg, #e74c3c, #c0392b);
+}
+
+.tool-icon.yellow {
+  background: linear-gradient(135deg, #f39c12, #d68910);
+}
+
+.tool-icon.purple {
+  background: linear-gradient(135deg, #9b59b6, #8e44ad);
+}
+
+.tool-icon.blue {
+  background: linear-gradient(135deg, #3498db, #2980b9);
+}
+
+.tool-icon.pink {
+  background: linear-gradient(135deg, #e91e63, #c2185b);
+}
+
+.tool-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+  .login-card {
+    padding: 32px 24px;
+  }
+  
+  .title {
+    font-size: 26px;
+  }
+  
+  .mango-top-right {
+    width: 200px;
+    height: 200px;
+    right: -50px;
+  }
+  
+  .mango-bottom-left {
+    width: 120px;
+    height: 120px;
+    left: -30px;
+  }
+  
+  .form-footer {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+  
+  .tools-footer {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 16px;
+  }
+  
+  .login-card {
+    padding: 24px 20px;
+  }
+  
+  .title {
+    font-size: 22px;
+  }
+  
+  .logo-text {
+    font-size: 20px;
+  }
+  
+  .tools-footer {
+    gap: 16px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

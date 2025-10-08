@@ -5,6 +5,32 @@ const searchInput = document.querySelector(".search-input");
 const filterSelect = document.querySelector(".filter-select");
 const darkmodeBtn = document.querySelector(".darkmode-btn");
 
+// Check if user is logged in
+function checkAuth() {
+  const firstName = localStorage.getItem('firstName');
+  if (!firstName) {
+    // Redirect to login if not logged in
+    window.location.href = 'login.html';
+    return false;
+  }
+  
+  // Display username in navbar
+  const usernameDisplay = document.getElementById('username-display');
+  if (usernameDisplay) {
+    usernameDisplay.textContent = `Welcome, ${firstName}!`;
+  }
+  
+  return true;
+}
+
+// Handle logout
+function handleLogout() {
+  localStorage.removeItem('firstName');
+  localStorage.removeItem('userId');
+  localStorage.removeItem('userEmail');
+  window.location.href = 'login.html';
+}
+
 const modal = document.getElementById("recipe-modal");
 const closeBtn = document.querySelector(".close");
 
@@ -151,6 +177,23 @@ async function openRecipe(id) {
   modal.classList.add("show");
 }
 
+document.addEventListener("DOMContentLoaded", () => {
+  // Check authentication first
+  if (!checkAuth()) {
+    return;
+  }
+  
+  fetchRecipes();
+
+  // Add logout button event listener
+  const logoutBtn = document.querySelector('.logout-btn');
+  if (logoutBtn) {
+    logoutBtn.addEventListener('click', handleLogout);
+  }
+
+  document.querySelector(".close").addEventListener("click", () => {
+    document.getElementById("recipe-modal").style.display = "none";
+  });
 // === CLOSE MODAL ===
 closeBtn.addEventListener("click", () => {
   modal.classList.remove("show");
