@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recipe Collection</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ========== NAVBAR ========== -->
+  <nav class="navbar">
+    <div class="nav-left">
+      <h2>Recipe Collection</h2>
+    </div>
+    <div class="nav-right">
+      <span class="username">Welcome, Emily!</span> <!-- nanti bisa diganti dinamis -->
+      <button class="logout-btn">Logout</button>
+    </div>
+  </nav>
+
+  <!-- ========== HEADER SECTION ========== -->
+  <section class="header-section">
+    <h1>Your Recipe Collection</h1>
+    <p>Explore and cook your most-loved dishes.</p>
+  </section>
+
+  <!-- ========== FILTER AREA ========== -->
+  <section class="filter-section">
+    <div class="filter-left">
+      <div class="search-box">
+        <input type="text" placeholder="Search recipes..." class="search-input">
+        <button class="search-btn">🔍</button>
+      </div>
+
+      <select class="filter-select">
+        <option value="all">All Cuisines</option>
+        <option>American</option>
+        <option>Asian</option>
+        <option>Italian</option>
+        <option>Mexican</option>
+        <option>Mediterranean</option>
+        <option>Pakistani</option>
+        <option>Japanese</option>
+        <option>Korean</option>
+        <option>Moroccan</option>
+        <option>Greek</option>
+        <option>Thai</option>
+        <option>Indian</option>
+        <option>Turkish</option>
+        <option>Lebanese</option>
+        <option>Russian</option>
+        <option>Brazilian</option>
+        <option>Smoothie</option>
+      </select>
+    </div>
+        
+    <div class="filter-right">
+      <div class="page-info">Showing 0 recipes</div>
+    </div>
+  </section>
+
+  <!-- ========== RECIPE GRID ========== -->
+  <section class="recipe-grid">
+    <!-- Akan diisi otomatis oleh app.js -->
+  </section>
+
+  <!-- ========== SHOW MORE BUTTON ========== -->
+  <div class="show-more-section">
+    <button class="show-more-btn">Show More Recipes</button>
+  </div>
+
+  <!-- ========== MODAL FOR VIEW FULL RECIPE ========== -->
+  <div id="recipe-modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2 id="modal-title">Recipe Title</h2>
+      <div class="modal-header">
+        <img id="modal-image" src="" alt="Recipe Image">
+        <div class="info-boxes">
+          <div class="info-box">
+            <div class="label">PREP TIME</div>
+            <div class="value" id="modal-prep-time">-- mins</div>
+          </div>
+          <div class="info-box">
+            <div class="label">COOK TIME</div>
+            <div class="value" id="modal-cook-time">-- mins</div>
+          </div>
+          <div class="info-box">
+            <div class="label">SERVINGS</div>
+            <div class="value" id="modal-servings">--</div>
+          </div>
+          <div class="info-box">
+            <div class="label">DIFFICULTY</div>
+            <div class="value" id="modal-difficulty">--</div>
+          </div>
+          <div class="info-box">
+            <div class="label">CUISINE</div>
+            <div class="value" id="modal-cuisine">--</div>
+          </div>
+          <div class="info-box">
+            <div class="label">CALORIES</div>
+            <div class="value" id="modal-calories">-- cal/serving</div>
+          </div>
+        </div>
+      </div>
+      <div class="rating-section">
+        <div id="modal-rating-stars" class="rating-stars">⭐⭐⭐⭐⭐</div>
+        <span id="modal-rating-text">(--)</span>
+        <span id="modal-review-count">-- reviews</span>
+      </div>
+      <div class="tags-section">
+        <span id="modal-tags"></span>
+      </div>
+      <div class="modal-body">
+        <h3>Ingredients</h3>
+        <ul id="modal-ingredients"></ul>
+        <h3>Instructions</h3>
+        <ol id="modal-instructions"></ol>
+      </div>
+    </div>
+  </div>
+
+  <!-- JS -->
+  <script src="app.js"></script>
+</body>
+</html>
