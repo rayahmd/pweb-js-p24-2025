@@ -31,20 +31,10 @@ let skip = 0;
 let total = 0;
 let currentCuisine = "all";
 
-// ambil list recipes
-async function fetchRecipes() {
-  let url = `https://dummyjson.com/recipes?limit=${limit}&skip=${skip}`;
-  const res = await fetch(url);
-  const data = await res.json();
-  recipes = [...recipes, ...data.recipes];
-  total = data.total;
-  renderRecipes();
-}
-
+// === DARK MODE TOGGLE ===
 darkmodeBtn.addEventListener("click", () => {
   document.body.classList.toggle("dark-mode");
 
-  // ganti icon tombol
   if (document.body.classList.contains("dark-mode")) {
     darkmodeBtn.textContent = "☀️";
     localStorage.setItem("theme", "dark");
@@ -63,13 +53,37 @@ window.addEventListener("load", () => {
   }
 });
 
-// render recipe card
+// === FETCH RECIPES ===
+async function fetchRecipes() {
+  let url = `https://dummyjson.com/recipes?limit=${limit}&skip=${skip}`;
+  const res = await fetch(url);
+  const data = await res.json();
+  recipes = [...recipes, ...data.recipes];
+  total = data.total;
+  renderRecipes();
+
+  // sembunyikan tombol jika semua sudah ditampilkan
+  if (recipes.length >= total) {
+    showMoreBtn.style.display = "none";
+  } else {
+    showMoreBtn.style.display = "flex";
+    showMoreBtn.style.margin = "20px auto";
+  }
+}
+
+// === RENDER RECIPES ===
 function renderRecipes(list = recipes) {
   recipeGrid.innerHTML = "";
 
   const filtered = currentCuisine === "all"
     ? list
     : list.filter(r => r.cuisine.toLowerCase() === currentCuisine.toLowerCase());
+
+  if (filtered.length === 0) {
+    recipeGrid.innerHTML = `<p class="not-found">No recipes found 🍳</p>`;
+    pageInfo.textContent = `Showing 0 of ${total} recipes`;
+    return;
+  }
 
   filtered.forEach(recipe => {
     const card = document.createElement("div");
@@ -102,12 +116,11 @@ function renderRecipes(list = recipes) {
   });
 }
 
-// ambil detail recipe
+// === DETAIL RECIPE ===
 async function openRecipe(id) {
   const res = await fetch(`https://dummyjson.com/recipes/${id}`);
   const recipe = await res.json();
 
-  // isi modal
   modalTitle.textContent = recipe.name;
   modalImage.src = recipe.image;
   modalPrepTime.textContent = `${recipe.prepTimeMinutes} mins`;
@@ -121,7 +134,6 @@ async function openRecipe(id) {
   modalReviewCount.textContent = `${recipe.reviewCount || "--"} reviews`;
   modalTags.textContent = recipe.tags ? recipe.tags.join(", ") : "";
 
-  // ingredients
   modalIngredients.innerHTML = "";
   recipe.ingredients.forEach(ing => {
     const li = document.createElement("li");
@@ -129,7 +141,6 @@ async function openRecipe(id) {
     modalIngredients.appendChild(li);
   });
 
-  // instructions
   modalInstructions.innerHTML = "";
   recipe.instructions.forEach(step => {
     const li = document.createElement("li");
@@ -137,23 +148,20 @@ async function openRecipe(id) {
     modalInstructions.appendChild(li);
   });
 
-  // buka modal
   modal.classList.add("show");
 }
 
-// close modal
+// === CLOSE MODAL ===
 closeBtn.addEventListener("click", () => {
   modal.classList.remove("show");
 });
-
-// klik luar modal -> close
 modal.addEventListener("click", (e) => {
   if (e.target === modal) {
     modal.classList.remove("show");
   }
 });
 
-// debounce util
+// === DEBOUNCE ===
 function debounce(fn, delay) {
   let timer;
   return function (...args) {
@@ -162,12 +170,12 @@ function debounce(fn, delay) {
   };
 }
 
-// search real-time
+// === SEARCH REALTIME ===
 const handleSearch = debounce(() => {
   const keyword = searchInput.value.toLowerCase();
 
   if (!keyword) {
-    renderRecipes(recipes); // tampil semua kalau kosong
+    renderRecipes(recipes);
     return;
   }
 
@@ -183,17 +191,25 @@ const handleSearch = debounce(() => {
 
 searchInput.addEventListener("input", handleSearch);
 
-// filter cuisine
-filterSelect.addEventListener("change", () => {
+// === FILTER CUISINE ===
+filterSelect.addEventListener("change", async () => {
   currentCuisine = filterSelect.value;
-  renderRecipes();
+  if (currentCuisine === "all") {
+    renderRecipes(recipes);
+  } else {
+    const res = await fetch(`https://dummyjson.com/recipes/search?q=${currentCuisine}`);
+    const data = await res.json();
+    renderRecipes(data.recipes || []);
+    // sembunyikan tombol show more kalau filter
+    showMoreBtn.style.display = "none";
+  }
 });
 
-// load more
+// === SHOW MORE ===
 showMoreBtn.addEventListener("click", () => {
   skip += limit;
   fetchRecipes();
 });
 
-// initial load
+// === INITIAL LOAD ===
 fetchRecipes();
