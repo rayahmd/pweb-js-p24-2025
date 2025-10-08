@@ -2,8 +2,8 @@ const recipeGrid = document.querySelector(".recipe-grid");
 const pageInfo = document.querySelector(".page-info");
 const showMoreBtn = document.querySelector(".show-more-btn");
 const searchInput = document.querySelector(".search-input");
-const searchBtn = document.querySelector(".search-btn");
 const filterSelect = document.querySelector(".filter-select");
+const darkmodeBtn = document.querySelector(".darkmode-btn");
 
 const modal = document.getElementById("recipe-modal");
 const closeBtn = document.querySelector(".close");
@@ -29,15 +29,11 @@ let recipes = [];
 let limit = 12;
 let skip = 0;
 let total = 0;
-let currentQuery = "";
 let currentCuisine = "all";
 
 // ambil list recipes
 async function fetchRecipes() {
   let url = `https://dummyjson.com/recipes?limit=${limit}&skip=${skip}`;
-  if (currentQuery) {
-    url = `https://dummyjson.com/recipes/search?q=${currentQuery}&limit=${limit}&skip=${skip}`;
-  }
   const res = await fetch(url);
   const data = await res.json();
   recipes = [...recipes, ...data.recipes];
@@ -45,13 +41,35 @@ async function fetchRecipes() {
   renderRecipes();
 }
 
+darkmodeBtn.addEventListener("click", () => {
+  document.body.classList.toggle("dark-mode");
+
+  // ganti icon tombol
+  if (document.body.classList.contains("dark-mode")) {
+    darkmodeBtn.textContent = "☀️";
+    localStorage.setItem("theme", "dark");
+  } else {
+    darkmodeBtn.innerHTML = `<span class="material-symbols-outlined">dark_mode</span>`;
+    localStorage.setItem("theme", "light");
+  }
+});
+
+// cek preference tersimpan
+window.addEventListener("load", () => {
+  const savedTheme = localStorage.getItem("theme");
+  if (savedTheme === "dark") {
+    document.body.classList.add("dark-mode");
+    darkmodeBtn.textContent = "☀️";
+  }
+});
+
 // render recipe card
-function renderRecipes() {
+function renderRecipes(list = recipes) {
   recipeGrid.innerHTML = "";
 
   const filtered = currentCuisine === "all"
-    ? recipes
-    : recipes.filter(r => r.cuisine.toLowerCase() === currentCuisine.toLowerCase());
+    ? list
+    : list.filter(r => r.cuisine.toLowerCase() === currentCuisine.toLowerCase());
 
   filtered.forEach(recipe => {
     const card = document.createElement("div");
@@ -135,13 +153,35 @@ modal.addEventListener("click", (e) => {
   }
 });
 
-// search
-searchBtn.addEventListener("click", () => {
-  currentQuery = searchInput.value;
-  recipes = [];
-  skip = 0;
-  fetchRecipes();
-});
+// debounce util
+function debounce(fn, delay) {
+  let timer;
+  return function (...args) {
+    clearTimeout(timer);
+    timer = setTimeout(() => fn.apply(this, args), delay);
+  };
+}
+
+// search real-time
+const handleSearch = debounce(() => {
+  const keyword = searchInput.value.toLowerCase();
+
+  if (!keyword) {
+    renderRecipes(recipes); // tampil semua kalau kosong
+    return;
+  }
+
+  const filtered = recipes.filter(r =>
+    r.name.toLowerCase().includes(keyword) ||
+    r.cuisine.toLowerCase().includes(keyword) ||
+    r.ingredients.some(ing => ing.toLowerCase().includes(keyword)) ||
+    (r.tags && r.tags.some(tag => tag.toLowerCase().includes(keyword)))
+  );
+
+  renderRecipes(filtered);
+}, 500);
+
+searchInput.addEventListener("input", handleSearch);
 
 // filter cuisine
 filterSelect.addEventListener("change", () => {
