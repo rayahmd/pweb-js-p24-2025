@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Recipe Collection</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
 </head>
 <body>
 
@@ -15,6 +16,10 @@
     </div>
     <div class="nav-right">
       <span class="username" id="username-display">Welcome, Guest!</span>
+      <button class="darkmode-btn"><span class="material-symbols-outlined">
+dark_mode
+</span></button>
+      <span class="username">Welcome, Emily!</span> <!-- nanti bisa diganti dinamis -->
       <button class="logout-btn">Logout</button>
     </div>
   </nav>
@@ -30,7 +35,9 @@
     <div class="filter-left">
       <div class="search-box">
         <input type="text" placeholder="Search recipes..." class="search-input">
-        <button class="search-btn">🔍</button>
+        <button class="search-btn"><span class="material-symbols-outlined">
+search
+</span></button>
       </div>
 
       <select class="filter-select">
