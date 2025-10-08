@@ -256,3 +256,6 @@ showMoreBtn.addEventListener("click", () => {
 
 // === INITIAL LOAD ===
 fetchRecipes();
+
+}); // <-- Add this closing brace to end DOMContentLoaded event listener
+

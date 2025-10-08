@@ -34,7 +34,7 @@ body.dark-mode {
 }
 
 body {
-  background: var(--bg-primary);
+  background: linear-gradient(135deg, #f5f1e8 0%, #ebe4d8 100%);
   color: var(--text-primary);
   font-family: var(--font-main);
   line-height: 1.6;
@@ -47,9 +47,7 @@ body {
   justify-content: space-between;
   background: var(--bg-secondary);
   color: var(--text-primary);
-  padding: 14px 20px;      
-  left: 0;
-  right: 0;
+  padding: 14px 20px;
   width: 70%;
   margin: 20px auto;
   z-index: 1000;
@@ -150,11 +148,6 @@ body {
   flex-wrap: wrap;
 }
 
-.search-box,
-.filter-select {
-  transition: all 0.2s ease;
-}
-
 .search-box {
   display: flex;
   align-items: center;
@@ -162,11 +155,7 @@ body {
   border-radius: 12px;
   overflow: hidden;
   background: var(--bg-secondary);
-}
-
-.search-box:hover {
-  background-color: var(--bg-primary);
-  border-color: #ccc;
+  transition: all 0.2s ease;
 }
 
 .search-box input {
@@ -203,16 +192,11 @@ body {
   outline: none;
 }
 
-.filter-select:hover {
-  background-color: var(--bg-primary);
-  border-color: #ccc;
-}
-
 /* ========== RECIPE GRID ========== */
 .recipe-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 32px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 28px;
   width: 90%;
   max-width: 1200px;
   margin: 0 auto 50px;
@@ -220,19 +204,21 @@ body {
 
 .recipe-card {
   background: var(--bg-secondary);
-  border-radius: 16px;
+  border-radius: 20px;
   overflow: hidden;
   box-shadow: var(--card-shadow);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: all 0.3s ease;
   display: flex;
   flex-direction: column;
   height: 100%;
   border: 1px solid var(--border-color);
+  cursor: pointer;
+  z-index: 999;
 }
 
 .recipe-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
 }
 
 .recipe-card img {
@@ -240,36 +226,37 @@ body {
   height: 200px;
   object-fit: cover;
   display: block;
+  border-bottom: 1px solid var(--border-color);
 }
 
 .recipe-info {
-  padding: 20px;
+  padding: 18px;
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  gap: 12px;
 }
 
 .recipe-info h3 {
   font-size: 18px;
   font-weight: 700;
-  margin-bottom: 12px;
   color: var(--text-primary);
+  margin-bottom: 6px;
+  line-height: 1.4;
 }
 
 .recipe-meta {
   display: flex;
-  gap: 12px;
   flex-wrap: wrap;
+  gap: 10px;
   font-size: 13px;
   color: var(--text-secondary);
-  margin-bottom: 12px;
 }
 
 .recipe-info p {
-  font-size: 14px;
+  font-size: 13.5px;
   color: var(--text-secondary);
-  margin-bottom: 14px;
   line-height: 1.5;
 }
 
@@ -277,24 +264,32 @@ body {
   font-size: 14px;
   font-weight: 600;
   color: var(--rating-color);
-  margin-bottom: 14px;
 }
 
+/* Tombol VIEW */
 .view-btn {
   width: 100%;
   padding: 12px;
-  background: var(--accent);
+  background: linear-gradient(135deg, #10b981, #059669);
   color: white;
   border: none;
-  border-radius: 10px;
+  border-radius: 12px;
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.25s ease;
+  transition: all 0.25s ease;
+  margin-top: auto;
 }
 
 .view-btn:hover {
-  background: var(--accent-hover);
+  background: linear-gradient(135deg, #059669, #047857);
+  transform: translateY(-2px);
+}
+
+/* DARK MODE ADAPTATION */
+body.dark-mode .recipe-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
 }
 
 body.dark-mode .view-btn {
@@ -304,23 +299,6 @@ body.dark-mode .view-btn {
 
 body.dark-mode .view-btn:hover {
   background: var(--text-secondary);
-  color: var(--bg-primary);
-}
-
-body.dark-mode .logout-btn:hover {
-  background: var(--text-primary);
-  color: var(--bg-primary);
-  border-color: var(--text-primary);
-}
-
-body.dark-mode .show-more-btn {
-  background: var(--text-primary);
-  color: var(--bg-primary);
-}
-
-body.dark-mode .show-more-btn:hover {
-  background: var(--text-secondary);
-  color: var(--bg-primary);
 }
 
 /* ========== SHOW MORE BUTTON ========== */
@@ -347,7 +325,7 @@ body.dark-mode .show-more-btn:hover {
 
 /* ========== MODAL ========== */
 .modal {
-  display: none; /* awalnya sembunyi */
+  display: none;
   position: fixed;
   top: 0;
   left: 0;
@@ -362,7 +340,7 @@ body.dark-mode .show-more-btn:hover {
 }
 
 .modal.show {
-  display: flex; /* ditampilkan dengan JS */
+  display: flex;
   animation: fadeIn 0.3s ease;
 }
 
@@ -380,7 +358,6 @@ body.dark-mode .show-more-btn:hover {
   color: var(--text-primary);
 }
 
-/* Tombol close (X) */
 .close {
   position: absolute;
   top: 15px;
@@ -542,3 +519,39 @@ body.dark-mode .show-more-btn:hover {
     padding: 16px 20px;
   }
 }
+
+.mango {
+  position: absolute;
+  border-radius: 50% 40% 60% 50%;
+  background: linear-gradient(135deg, #ff6b6b 0%, #ff8e53 50%, #feca57 100%);
+  opacity: 0.7;
+  z-index: 0;
+}
+
+.mango-top-right {
+  width: 300px;
+  height: 300px;
+  top: -50px;
+  right: 100px;
+  animation: float 6s ease-in-out infinite;
+  z-index: 0;
+}
+
+.mango-bottom-left {
+  width: 150px;
+  height: 150px;
+  bottom: 100px;
+  left: 150px;
+  animation: float 8s ease-in-out infinite reverse;
+  z-index: 0;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(5deg);
+  }
+}
+
